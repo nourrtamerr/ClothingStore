@@ -30,7 +30,7 @@
                             <option value="featured">Featured</option>
                             <option value="price-low-high">Price: Low to High</option>
                             <option value="price-high-low">Price: High to Low</option>
-                            
+
                         </select>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
 
         <div class="row justify-content-center">
             <!-- Filters Sidebar -->
-            <div class="col-3 d-flex flex-column filter-sidebar">
+            <div class="d-flex flex-column filter-sidebar">
                 <div class="filter-section">
                     <div class="filter-header" (click)="toggleSection('category')">
                         <span>Category</span>
@@ -51,7 +51,7 @@
                         <div class="checkbox-list">
                             @for(category of Categories; track category.id) {
                                 <label class="checkbox-item">
-                                    <input type="checkbox" 
+                                    <input type="checkbox"
                                            [checked]="selectedCategory === category.id"
                                            (change)="toggleCategory(category)">
                                     {{ category.name }}
@@ -73,7 +73,7 @@
                         <div class="checkbox-list">
                             @for(subCategory of MatchedSubCategories; track subCategory.id) {
                                 <label class="checkbox-item">
-                                    <input type="checkbox" 
+                                    <input type="checkbox"
                                            [checked]="selectedSubCategories.includes(subCategory.id)"
                                            (change)="toggleSubCategory(subCategory.id)">
                                     {{ subCategory.name }}
@@ -93,12 +93,12 @@
                         </span>
                     </div>
 
-                    
+
                     <div class="filter-content" [class.collapsed]="!expandedSections.size">
                         <div class="checkbox-list">
                             <!-- <div *ngFor="let size of getEnumValues(SizeEnum)">
                                 <label class="checkbox-item">
-                                    <input type="checkbox" 
+                                    <input type="checkbox"
                                            [checked]="selectedSizes.includes(size)"
                                            (change)="toggleSize(size)">
                                     {{ SizeEnum[size] }}
@@ -107,7 +107,7 @@
 
                             @for(size of getEnumValues(SizeEnum); track size){
                                 <label class="checkbox-item">
-                                    <input type="checkbox" 
+                                    <input type="checkbox"
                                            [checked]="selectedSizes.includes(size)"
                                            (change)="toggleSize(size)">
                                     {{ SizeEnum[size] }}
@@ -130,12 +130,12 @@
                     </div>
 
 
-                    
+
                     <div class="filter-content" [class.collapsed]="!expandedSections.color">
                         <div class="checkbox-list">
                             <div *ngFor="let color of getEnumValues(ColorEnum)">
                                 <label class="checkbox-item">
-                                    <input type="checkbox" 
+                                    <input type="checkbox"
                                            [checked]="selectedColors.includes(color)"
                                            (change)="toggleColor(color)">
                                     {{ ColorEnum[color] }}
@@ -157,12 +157,12 @@
                     </div>
                     <div class="filter-content" [class.collapsed]="!expandedSections.priceRange">
                         <div class="price-inputs">
-                            <input type="number" [(ngModel)]="selectedMinPrice" 
-                                   (input)="filterProducts()" 
+                            <input type="number" [(ngModel)]="selectedMinPrice"
+                                   (input)="filterProducts()"
                                    placeholder="Min Price"
                                    class="form-control">
-                            <input type="number" [(ngModel)]="selectedMaxPrice" 
-                                   (input)="filterProducts()" 
+                            <input type="number" [(ngModel)]="selectedMaxPrice"
+                                   (input)="filterProducts()"
                                    placeholder="Max Price"
                                    class="form-control">
                         </div>
@@ -176,7 +176,7 @@
                     </div>
                     <div class="filter-content">
                         <div class="checkbox-item">
-                            <input type="checkbox" 
+                            <input type="checkbox"
                                    [checked]="IsInStock"
                                    (change)="toggleStockFilter()">
                             <label>In Stock Only</label>
@@ -190,13 +190,13 @@
 
 
             </div>
-            
+
             <!-- Products Grid -->
-            <div class="col-9">
-                <div class="row products-grid">
-                    @for(prod of paginatedProducts; track $index){   
-                        <div class="col-4 mb-4">
-                            <app-one-product [prodData]="prod"></app-one-product>  
+            <div class="col-6 col-lg-8 col-xl-9">
+                <div class="row products-grid ">
+                    @for(prod of paginatedProducts; track $index){
+                        <div class="col-12 col-lg-6 col-xl-4 mb-4 ">
+                            <app-one-product [prodData]="prod"></app-one-product>
                         </div>
                     }
                 </div>
@@ -204,13 +204,13 @@
                     <ul class="pagination justify-content-center">
                         <li class="page-item" [class.disabled]="pageNum === 1">
                             <a class="page-link" (click)="changePage(pageNum - 1)">Previous</a>
-                        </li> 
+                        </li>
                         <li class="page-item" *ngFor="let page of getPaginationArray()" [class.active]="page === pageNum">
                             <a class="page-link" (click)="changePage(page)">{{page}}</a>
                         </li>
                         <li class="page-item" [class.disabled]="pageNum === totalPages">
                             <a class="page-link" (click)="changePage(pageNum + 1)">Next</a>
-                        </li> 
+                        </li>
                     </ul>
                 </nav>
             </div>
